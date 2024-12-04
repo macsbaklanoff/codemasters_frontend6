@@ -2,10 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+$breakpoint-tablet: 840px;
+$breakpoint-phone: 700px;
+$breakpoint-medium: 1240px;
+
 html,
 body {
   margin: 0;
   height: 100dvh;
+}
+
+h1,
+h2,
+h4 {
+  margin: 0;
+}
+
+@mixin text-header {
+  //styleName: material-theme/title/large;
+  font-family: Roboto;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+
 }
 
 body {
@@ -13,27 +35,745 @@ body {
   height: 100vh;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: min-content;
-  column-gap: 24px;
+  column-gap: 16px;
   padding-inline: 156px;
   position: relative;
+
+  @media(width <=#{$breakpoint-tablet}) {
+    grid-template-columns: repeat(8, 1fr);
+    padding-inline: 64px;
+  }
+
+  @media(width <=#{$breakpoint-phone}) {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 24px;
+    padding-inline: 32px;
+  }
+
 }
 
 section {
   grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: subgrid;
   isolation: isolate;
 }
 
 .hero-section {
   height: 100dvh;
-  
+  color: #FFF;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: min-content;
+
+  &__nav {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1/-1;
+    padding-top: 26px;
+    height: 100px;
+
+    &__logo {
+      grid-column: span 2;
+      background-image: url(../src/WY_Logo.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      min-width: 168px;
+      min-height: 50px;
+    }
+
+    &__text-description {
+      grid-column: 7;
+      @include text-header;
+    }
+
+    &__text-usability {
+      grid-column: 9;
+      @include text-header;
+    }
+
+    &__text-participation {
+      grid-column: 11;
+      @include text-header;
+    }
+
+    @media(width <=#{$breakpoint-tablet}) {
+
+
+      &__text-description {
+        grid-column: 1;
+        grid-row: 2;
+        @include text-header;
+      }
+
+      &__text-usability {
+        grid-column: 1;
+        grid-row: 3;
+        @include text-header;
+      }
+
+      &__text-participation {
+        grid-column: 1;
+        grid-row: 4;
+        @include text-header;
+      }
+    }
+  }
+
+  &__content {
+    grid-column: span 6;
+    display: grid;
+    //grid-template-columns: subgrid;
+    grid-template-rows: min-content;
+
+    &__first-headline {
+      font-family: Roboto;
+      font-size: 57px;
+      font-weight: 400;
+      line-height: 64px;
+      letter-spacing: -0.25px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      padding-top: 180px;
+    }
+
+    &__second-headline {
+      font-family: Roboto;
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 40px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      padding-top: 20px;
+    }
+
+    &__cta {
+      padding: 24px;
+      border-radius: 16px;
+      background-color: #006399;
+      display: grid;
+      place-items: center;
+      height: 100px;
+      font-family: Roboto;
+      font-size: 45px;
+      font-weight: 400;
+      line-height: 52px;
+      text-align: center;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+
+    }
+
+    @media(width <=#{$breakpoint-tablet}) {
+      grid-column: span 8;
+    }
+
+    @media(width <=#{$breakpoint-phone}) {
+      grid-column: span 4;
+    }
+  }
+
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: -1;
     background-image: url('https://s3-alpha-sig.figma.com/img/5789/05ac/f6a90cb182a2ace4cb6fbef124c0b2ff?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=AEOHSvVWyBotz9TDGaYSgq~nYmi6O7CIKXA34FGOQkI4QP5j1--I-hxpWyuSuyJN~ycWX6B2D6luaBzEQARSdd39KkP3gY29xV-6lVWL9hoPjZISD3XcMUrqSJwkSSewSwUrnPoD6xIBtoheKz7HR6GBg9ugiYPADtU~1SAEjCCsMIwQXlkjkOZljv-Qgj62NRSZqQuxDybqsHizxe9sPo~rjMYOgP79PE2dLOtdyDgZZsUWXPk1EkhzeQPBA7t-qNwoH6ejGtWkahN~hTFmVrlA6pZVteH7atY7j4SJtUBbUPPU8ASlv2jLVZw0x03L993Iys2SmhWVyDbniursGg__');
-    //background-size: cover;
-    //background-position: right;
+    background-size: cover;
+    background-position: right;
   }
-    
+
+}
+
+.section-info-block {
+  display: grid;
+  grid-template-columns: subgrid;
+  height: auto;
+  grid-column: 1 / -1;
+
+  &__container {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    padding-block: 100px;
+
+    &__image {
+      grid-column: 1 / span 5;
+      background-image: url(https://s3-alpha-sig.figma.com/img/64af/9ae6/66d8a601f727fc4ad3e565f793de4b8d?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SxRVJ0g9MaEcJ288vnAMGO4BdPkL0L1zqzEHfGl954EKNYTQZfJJJBhyLl5JDuG5ZApcxg-Ig7CB4g3vL4l~4c6pDdQfiJDuhOFtMAHAKB9fPBouO6aG0XbzpqP4OLHJHHzk2i3ObGGhpEjDX~3JKpie2B7RuLE0gNCW5xtcZTJS7zQIPgsoMUzZOwSr~uw5YiuokJaRoIaJHRXUaizqW~5PadjR78mNTRWOli9cxwcCrZjQ0yhSEHJuf5DYrPaIZ745VkIchdUoZlnhlWCPPNM7sT2neF2EHmLx-oF2h6h-O8R7kfsouubdG1hcHMfO-6tPaaM-WYI0RgUpYTLmYw__);
+      background-repeat: no-repeat;
+      background-position: left;
+      border-radius: 16px;
+      min-height: 250px;
+    }
+
+    &__info {
+      grid-column: 7 / -1;
+
+      &__header {
+        color: #006399;
+        font-family: Roboto;
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 36px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+      }
+
+      &__text {
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+
+      }
+    }
+  }
+
+  @media(width <=#{$breakpoint-tablet}) {
+    &__container {
+      &__image {
+        grid-column: 1 / -1;
+      }
+
+      &__info {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+    }
+  }
+
+  @media(width <=#{$breakpoint-phone}) {
+    grid-column: span 4;
+  }
+}
+
+
+
+.section-span {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  place-items: center;
+  position: relative;
+  isolation: isolate;
+  height: 200px;
+
+  &__text {
+    grid-column: 1/-1;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 52px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+  }
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    z-index: -1;
+    background-color: #2F3033;
+  }
+}
+
+.section-info-block {
+  display: grid;
+  grid-template-columns: subgrid;
+  height: auto;
+  grid-column: 1 / -1;
+
+  &__second {
+    &__container {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+      padding-block: 100px;
+
+      &__image {
+        grid-column: 8 / -1;
+        background-image: url(https://s3-alpha-sig.figma.com/img/bb1e/a021/06377785276820ebdeacea4c781ec8ad?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZXwC-ACzu8~ztn6PC7ze1m2fAxijZ-ZwfCLIZhpDqnbMKNqdUdXVWpQ3tAkBpWaIKRzfY-o-dhqNM02CVcTYKE82U5aMJaRuJo2zJ73ykvg2-d~q4BPw8l2SR4fCZbCOcJh28X34PtT7I6Kkvgn5LXCOQP6chHw4VF7Jx2DM0U1is4K5Bpn9pgu8XGRNVDLD1DVVTsNUC-toTNWENRtqJipa~NAymmeJfAS9GQRevwdmJDVafDUXRUhBhg9hGOkVNCBfeZtYMaEqV19IGpxqQxq~KenYssy78n5JGdhUpExXlqp2t47z-6vN-Y4jfwJ~MWPCALCtfHrH1gHdI0TMbA__);
+        background-repeat: no-repeat;
+        background-position: left;
+        border-radius: 16px;
+        min-height: 250px;
+      }
+
+      &__info {
+        grid-column: span 6;
+        grid-row: 1;
+
+        &__header {
+          color: #006399;
+          font-family: Roboto;
+          font-size: 28px;
+          font-weight: 400;
+          line-height: 36px;
+          text-align: left;
+          text-underline-position: from-font;
+          text-decoration-skip-ink: none;
+        }
+
+        &__text {
+          font-family: Roboto;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0.5px;
+          text-align: left;
+          text-underline-position: from-font;
+          text-decoration-skip-ink: none;
+        }
+      }
+    }
+  }
+
+  @media(width <=#{$breakpoint-tablet}) {
+    &__second {
+      &__container {
+        &__image {
+          grid-column: 1 / -1;
+        }
+
+        &__info {
+          grid-column: 1 / -1;
+          grid-row: 2;
+        }
+      }
+    }
+  }
+
+  @media(width <=#{$breakpoint-phone}) {
+    grid-column: span 4;
+  }
+}
+
+.four-image {
+  grid-column: 8 / -1;
+  background-image: url(https://s3-alpha-sig.figma.com/img/d1cb/3292/02792b3173f3cb9c1b096c4877d243dd?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BWJ4SvD6Zd8O9INpYosXhzSU9LlkL72KBQStqSNtWKk7kidqZM6Sh~mmA8zxTe0NZobsRngDCrbAHWmneIh-B2JNvXc7QhC4itQRqS2Msp~uS1FVyuSgmMaBO3ACcP4oNrWZVWaKlcmhedo0wbFfN3rgXvnyEAwvpmHDjKB6aJLye~nIwQRXl7cA-V6SLebaDfHpeVNa05KBhkh4n9Cb-tHFDmTF8yPMuHDxV9qXk~8PK9QiiWbyjWXVfu~c9PKDpVoCJShuNh4t0ff1K2aSELP7m~pjvuOIPkZ0iUnvL5HVGC7wUy9qAjm-V7LNW9pFt5gJhFWvBnINxcBpy2FoFA__);
+  background-repeat: no-repeat;
+  background-position: left;
+  border-radius: 16px;
+  min-height: 250px;
+}
+
+.five-image {
+  grid-column: 8 / -1;
+  background-image: url(https://s3-alpha-sig.figma.com/img/5265/b80c/4b87bae3c9f44ff369b80d9ef2ae1e5a?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TXjSr3nHP900e96aT~PBZY5H3dqmNGhfvjWlqWA2U85L8lJk92VoTvfBdW0c63whJKskD9X3EFssPGf~qYhJe1SbFx8MD~16G~zYK12ec4DOL1ceGE~Pc3nI5eMxdcCelc7lHaZp44osOW7kgPAjkyMAPU~e90-aDhnd7FtJB6~T8URjcD56c4DMSs4LOhRgQCwjl3VOgTKLxIOGmHC6KmQAwirk2piHm-i2wWl5VYlM~s4wnVT2BV9p7LUhMOiSZmYWMM7rDEpNbRs0Mbs8K61WX462humOJS3NC0RniTqOWMCSF5FMLBHUHtDCpvSGP33jG2aPajhkADB2cFLqiA__);
+  background-repeat: no-repeat;
+  background-position: left;
+  border-radius: 16px;
+  min-height: 250px;
+}
+
+@media(width <=#{$breakpoint-tablet}) {
+
+  .four-image,
+  .five-image {
+    grid-column: 1 / -1;
+  }
+}
+
+.section-span {
+  &__second {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    place-items: center;
+    position: relative;
+    isolation: isolate;
+    min-height: 200px;
+
+    &__text {
+      grid-column: 5 / -1;
+      //styleName: material-theme/body/large;
+      color: #42474E;
+      font-family: Roboto;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+    }
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      z-index: -1;
+      background-color: #DEE3EB;
+    }
+  }
+
+  @media(width <=#{$breakpoint-tablet}) {
+    &__second {
+      &__text {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+}
+
+.section-info-block {
+  display: grid;
+  grid-template-columns: subgrid;
+  height: auto;
+  grid-column: 1 / -1;
+
+  &__three {
+    &__container {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
+      padding-block: 100px;
+
+      &__image {
+        grid-column: span 5;
+        background-image: url(https://s3-alpha-sig.figma.com/img/1aad/e643/a3b12fcd939d4bd6c35e9116e519e18e?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=CBPLhQJ3sb8aU06Q~nuxA8CDPyeafUQlfgtY8G-6mBkGkSlylVWss-X-aj9RMXamIFmKjXZEbtyu2vBL5iXEaYfUayv08pwHdyoTRDRABhdiQYyfd0ipA8S2cfz917PwPRQkDoeF3R3-77ohU~AgM0Rxbe5Ug7vExQdgCGkMiK-q7LQA3Tz5P9Gvx6NFZRguxnpTRz6r4TotPZMsA2ADQs8Vv6NAAgNZuF6v4LoMT3RoCrDlSlk4A5DfNbyLuenPhTBsvXdWab4Vot6ki5wdNP-Xuftumz6kD95rUU0xIsl6rtC5stVxA2sQPCaA3cNnt5Su8nA8LccaZDfBYCK6Pw__);
+        background-repeat: no-repeat;
+        background-position: left;
+        border-radius: 16px;
+        min-height: 250px;
+      }
+
+      &__info {
+        grid-column: 7 / -1;
+        grid-row: 1;
+
+        &__header {
+          color: #006399;
+          font-family: Roboto;
+          font-size: 28px;
+          font-weight: 400;
+          line-height: 36px;
+          text-align: left;
+          text-underline-position: from-font;
+          text-decoration-skip-ink: none;
+        }
+
+        &__text {
+          font-family: Roboto;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0.5px;
+          text-align: left;
+          text-underline-position: from-font;
+          text-decoration-skip-ink: none;
+
+        }
+      }
+    }
+  }
+
+  @media(width <=#{$breakpoint-tablet}) {
+    &__three {
+      &__container {
+        &__image {
+          grid-column: 1 / -1;
+        }
+
+        &__info {
+          grid-column: 1 / -1;
+          grid-row: 2;
+        }
+      }
+    }
+  }
+
+  @media(width <=#{$breakpoint-phone}) {
+    grid-column: span 4;
+  }
+}
+
+.big-section {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-auto-rows: auto;
+  position: relative;
+  isolation: isolate;
+  padding-block: 100px;
+
+  &__image {
+    grid-column: span 5;
+    background-image: url(https://s3-alpha-sig.figma.com/img/8b60/af22/f02d84ebb8b268ddabe0443886678db9?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bg9JIYm6TgcJhrGddtSfVsOlNRX3N5G5LrX5drTvIqxk2JfCKGqyfRduiFARqeeSYsNt3NZf8P87cjm35WhAgMo~kpfTNeWXQ0priFs1oJifVkSduEnIwQOLF1yDIcHTTu9452dZidhUspCSa3fEtunibIC0a7kTzurLW8uCkTzq2Av7UzXj~JO2PMzmqpfOgQNMYW0JnwEi~RwgTt0EGyFL0bRYW3YBHG~iEeDvIcgRhOSe-PE8viaXBRjDuCQIxZ4OpTmCpWh4xQS8atpaOaNWdwn5dkMaKYkmp8yIvx69OoT4bCIG1G92Ia8eDlgTlYNkI5N~4s-9fvXAOdoBUQ__);
+    background-repeat: no-repeat;
+    background-position: left;
+    border-radius: 16px;
+    height: 252px;
+    object-fit: cover;
+  }
+
+  &__item {
+    display: grid;
+
+    &--one {
+      grid-column: span 5;
+      grid-row: 2;
+    }
+
+    &--two {
+      grid-column: span 5;
+      grid-row: 3;
+    }
+
+    &--three {
+      grid-column: 7 / -1;
+      grid-row: 1;
+    }
+
+    &--four {
+      grid-column: 7 / -1;
+      grid-row: 2;
+    }
+
+    &--five {
+      grid-column: 7 / -1;
+      grid-row: 3;
+    }
+
+    &__header {
+      color: #006399;
+      font-family: Roboto;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 36px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+
+    }
+
+    &__text {
+      color: #1B1B1D;
+      font-family: Roboto;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #D4E4F6;
+    z-index: -1;
+  }
+
+  @media(width <=#{$breakpoint-medium}) {
+    &__image {
+      grid-column: 1 / -1;
+    }
+
+    &__item {
+      &--one {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+
+      &--two {
+        grid-column: 1 / -1;
+        grid-row: 3;
+      }
+
+      &--three {
+        grid-column: 1 / -1;
+        grid-row: 4;
+      }
+
+      &--four {
+        grid-column: 1 / -1;
+        grid-row: 5;
+      }
+
+      &--five {
+        grid-column: 1 / -1;
+        grid-row: 6;
+      }
+    }
+  }
+}
+
+.section-span-three {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-auto-rows: auto;
+  padding-inline: 156px;
+  padding-block: 100px;
+  grid-column: 1 / -1;
+  place-items: center;
+  position: relative;
+  isolation: isolate;
+
+  &__text-one {
+    grid-column: 1 / -1;
+    font-family: Roboto;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 44px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+  }
+
+  &__text-two {
+    grid-column: 1 / -1;
+    font-family: Roboto;
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 52px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+  }
+
+  &__text-three {
+    grid-column: 1 / -1;
+    font-family: Roboto;
+    font-size: 57px;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: -0.25px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+  }
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    z-index: -1;
+    background-color: #CDE5FF;
+  }
+}
+
+.section-span-four {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  place-items: center;
+  position: relative;
+  isolation: isolate;
+  height: 200px;
+  padding-block: 50px;
+
+  &__text {
+    grid-column: 1 / -1;
+    height: 100px;
+    width: 552px;
+    color: #FFF;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: #006399;
+    display: grid;
+    place-items: center;
+    height: 100px;
+    font-family: Roboto;
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 52px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+
+  }
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    z-index: -1;
+    background-color: #2F3033;
+  }
+}
+
+.section-span-five {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  place-items: center;
+  position: relative;
+  isolation: isolate;
+  padding-block: 93px;
+
+  &__image {
+    grid-column: 1 / -1;
+
+    background-image: url(../src/WY\ Logo\ Full.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    border-radius: 16px;
+    height: 252px;
+    width: 552px;
+    object-fit: cover;
+  }
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  position: relative;
+  isolation: isolate;
+  height: 150px;
+
+  &__info {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-auto-rows: min-content;
+    &__one, &__two, &__three {
+      color: #FFF;
+      font-family: Roboto;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.25px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+    }
+    &__one {
+      grid-column: 9 / -1;
+      grid-row: 1;
+    }
+    &__two {
+      grid-column: 9 / -1;
+      grid-row: 2;
+    }
+    &__three {
+      grid-column: 9 / -1;
+      grid-row: 3;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    z-index: -1;
+    background-color: #2F3033;
+  }
 }

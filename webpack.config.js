@@ -27,7 +27,13 @@ module.exports = {
                     'sass-loader',
                 ],
             },
-            
+            {
+                test: /\.(png|jpe?g|gif|svg)$/i, // Регулярное выражение для проверки типов файлов
+                type: 'asset/resource', // Важно!  Для file-loader используем asset/resource
+                generator: {
+                  filename: 'images/[hash][ext][query]' // Папка для изображений, [hash] добавит хеш для кэширования
+                }
+            },
         ],
     },
     plugins: [
